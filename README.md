@@ -69,6 +69,11 @@ node server/server.js
 # (Recommended) Option 2. Run in background using PM2
 # Install PM2 if you don't have it: 
 npm install pm2 -g && pm2 install pm2-logrotate
+#Set log siz to to less than 1G, due to error.log can sometimes be 10G s:
+#/home/kuma/.pm2/logs# du -smh .[!.]* *
+#11G uptime-kuma-error.log
+#4.0K uptime-kuma-out.log
+pm2 set pm2-logrotate:max_size 200M
 
 # Start Server
 pm2 start server/server.js --name uptime-kuma
